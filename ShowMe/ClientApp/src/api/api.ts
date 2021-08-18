@@ -7,12 +7,23 @@ export const instance = axios.create({
 
 export enum ResponseCodes {
     Success = 0,
-    Error = 1,
+    Error = 1
 }
 
 export type ProfileType = {
-    id: number,
-    login: string,
-    password: string,
-    role: string,
+    id: number
+    login: string
+    password: string
 }
+
+export type ResponseType = {
+    resultCode: ResponseCodes,
+    messages: string[],
+}
+
+
+
+
+
+
+

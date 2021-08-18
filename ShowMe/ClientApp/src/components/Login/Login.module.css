@@ -1,3 +1,29 @@
+.login_form_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 20px);
+}
+
+.login_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EDF0F6;
+    border-radius: 10px;
+    width: 400px;
+    height: 500px;
+}
+
+.login_form form {
+    width: 300px;
+    height: 250px;
+}
+
+.login_form svg {
+    color: black;
+}
+
 .login_form .login_form_forgot {
     float: right;
 }
@@ -6,4 +32,9 @@
 }
 .login_form .login_form_button {
     width: 100%;
+}
+
+.form_error{
+    color: red;
+    text-align: center;
 }

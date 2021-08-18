@@ -1,5 +1,5 @@
+import {getAuthUserData} from './auth-reducer';
 import {InferActionsTypes} from "./redux-store";
-import {getAuthUserData} from "./auth-reducer";
 
 let initialState = {
     initialised: false,

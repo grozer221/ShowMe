@@ -49,7 +49,7 @@ export const Register = () => {
         }
     }, [formSuccess])
 
-    const onFinish = (values: { login: string, password: string, confirmPassword: string}) => {
+    const onFinish = (values: { login: string, password: string, confirmPassword: string }) => {
         dispatch(register(values.login, values.password, values.confirmPassword));
     };
 

@@ -1,3 +1,4 @@
+import {FormAction} from 'redux-form';
 import {ProfileType, ResponseCodes} from '../api/api';
 import {authAPI} from "../api/auth-api";
 import {BaseThunkType, InferActionsTypes} from "./redux-store";
@@ -36,7 +37,7 @@ export const actions = {
         type: 'SET_IS_FETCHING',
         isFetching: isFetching
     } as const),
-};
+}
 
 export const getAuthUserData = (): ThunkType => async (dispatch) => {
     let data = await authAPI.isAuth();
@@ -50,8 +51,8 @@ export const login = (login: string, password: string): ThunkType => async (disp
     if (data.resultCode === ResponseCodes.Success)
         dispatch(actions.setAuthUserData(data.data, true));
     else if (data.resultCode === ResponseCodes.Error) {
-        // dispatch(appActions.setFormSuccess(false));
-        // dispatch(appActions.setFormError(data.messages[0]));
+        dispatch(appActions.setFormSuccess(false));
+        dispatch(appActions.setFormError(data.messages[0]));
     }
     dispatch(actions.setIsFetching(false));
 };
@@ -62,8 +63,8 @@ export const register = (login: string, password: string, confirmPassword: strin
     if (data.resultCode === ResponseCodes.Success)
         dispatch(actions.setAuthUserData(data.data, true));
     else if (data.resultCode === ResponseCodes.Error) {
-        // dispatch(appActions.setFormSuccess(false));
-        // dispatch(appActions.setFormError(data.messages[0]));
+        dispatch(appActions.setFormSuccess(false));
+        dispatch(appActions.setFormError(data.messages[0]));
     }
     dispatch(actions.setIsFetching(false));
 };
@@ -78,4 +79,4 @@ export default authReducer;
 
 export type InitialStateType = typeof initialState;
 type ActionsType = InferActionsTypes<typeof actions>;
-type ThunkType = BaseThunkType<ActionsType>;
+type ThunkType = BaseThunkType<ActionsType | FormAction>;

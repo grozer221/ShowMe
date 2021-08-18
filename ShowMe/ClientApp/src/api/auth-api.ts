@@ -1,31 +1,23 @@
-import {instance, ProfileType, ResponseCodes} from "./api";
+import {instance, ProfileType} from "./api";
+import {ResponseType} from './api'
 
 export const authAPI = {
     isAuth() {
-        return instance.get<ResponseType>('account/isauth')
+        return instance.get<Response>('account/isauth')
             .then(res => res.data);
     },
     login(login: string, password: string) {
-        return instance.post<ResponseType>('account/login', {'login': login, 'password': password})
+        return instance.post<Response>('account/login', {'login': login, 'password': password})
             .then(res => res.data);
     },
     register(login: string, password: string, confirmPassword: string) {
-        return instance.post<ResponseType>('account/register', {'login': login, 'password': password, 'confirmPassword': confirmPassword})
+        return instance.post<Response>('account/register', {'login': login, 'password': password, 'confirmPassword': confirmPassword})
             .then(res => res.data);
     },
     logout() {
-        return instance.delete<LogoutType>('account/logout')
+        return instance.delete<ResponseType>('account/logout')
             .then(res => res.data);
     }
 };
 
-type ResponseType = {
-    resultCode: ResponseCodes
-    messages: Array<string>
-    data: ProfileType
-}
-
-type LogoutType = {
-    resultCode: ResponseCodes
-    messages: Array<string>
-}
+type Response = ResponseType & {data: ProfileType}

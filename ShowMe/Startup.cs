@@ -79,6 +79,7 @@ namespace ShowMe
                 endpoints.MapControllerRoute("DefaultApiWithId", "api/{controller}/{id}", new { id = RouteParameter.Optional }, new { id = @"\d+" });
                 endpoints.MapControllerRoute("DefaultApiWithId", "api/{controller}/{count}/{page}", new { id = RouteParameter.Optional }, new { id = @"\d+" });
                 endpoints.MapControllerRoute("DefaultApiWithAction", "api/{controller}/{action}");
+                endpoints.MapHub<LocalHostHub>("socket/localhost");
             });
 
             app.UseSpa(spa =>

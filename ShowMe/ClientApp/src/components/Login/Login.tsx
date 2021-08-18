@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import s from './Login.module.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {login} from '../../redux/auth-reducer';
+import {Form, Input, Button, Checkbox, message, Spin} from 'antd';
+import {LoadingOutlined, LockOutlined, UserOutlined} from "@ant-design/icons";
 import {s_getIsAuth, s_getIsFetching} from "../../redux/auth-selectors";
+import {Link, Redirect, useHistory} from "react-router-dom";
 import {s_getFormError, s_getFormSuccess} from "../../redux/app-selectors";
-import {login} from "../../redux/auth-reducer";
 import {actions as appActions} from "../../redux/app-reducer";
-import {Button, Checkbox, Form, Input, Spin} from 'antd';
-import {LockOutlined, UserOutlined, LoadingOutlined} from "@ant-design/icons";
 
 export const Login: React.FC = () => {
     const isAuth = useSelector(s_getIsAuth);
@@ -29,7 +29,7 @@ export const Login: React.FC = () => {
         }
     }, [formSuccess])
 
-    if (isAuth)
+    if(isAuth)
         return <Redirect to='/'/>
 
     return (
@@ -37,23 +37,23 @@ export const Login: React.FC = () => {
             <div className={s.login_form}>
                 <Form
                     name="login_form"
-                    initialValues={{remember: true}}
+                    initialValues={{ remember: true }}
                     onFinish={onFinish}
                 >
                     <Form.Item
                         name="login"
-                        rules={[{required: true, message: 'Please input your Login!'}]}
+                        rules={[{ required: true, message: 'Please input your Login!' }]}
                     >
-                        <Input prefix={<UserOutlined className="site-form-item-icon"/>}
+                        <Input prefix={<UserOutlined className="site-form-item-icon" />}
                                placeholder="Login"
-                               onChange={() => dispatch(appActions.setFormError(''))}/>
+                               onChange={() => dispatch(appActions.setFormError(''))} />
                     </Form.Item>
                     <Form.Item
                         name="password"
-                        rules={[{required: true, message: 'Please input your Password!'}]}
+                        rules={[{ required: true, message: 'Please input your Password!' }]}
                     >
                         <Input
-                            prefix={<LockOutlined className="site-form-item-icon"/>}
+                            prefix={<LockOutlined className="site-form-item-icon" />}
                             type="password"
                             placeholder="Password"
                             onChange={() => dispatch(appActions.setFormError(''))}
