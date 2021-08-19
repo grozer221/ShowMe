@@ -48,6 +48,7 @@ namespace ShowMe
             services.AddSignalR(options =>
             {
                 options.EnableDetailedErrors = true;
+                options.MaximumReceiveMessageSize = null;
             });
         }
 

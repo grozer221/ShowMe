@@ -1,0 +1,41 @@
+.wrapperClients {
+    height: 100%;
+    position: relative;
+    padding: 5px 1px 5px 5px;
+}
+
+.clients {
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.actionWithClients {
+    position: absolute;
+    bottom: 5px;
+    right: 13px;
+    display: flex;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.client {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    border: none;
+    padding: 5px 10px;
+    text-align: left;
+    border-radius: 10px;
+
+}
+
+.selected {
+    background-color: #1f2f3b;
+    color: white;
+}

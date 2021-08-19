@@ -1,10 +1,6 @@
 * {
-    scrollbar-color: #CFD3E4 #EDF0F6;
+    scrollbar-color: #CFD3E4 white;
     scrollbar-width: thin;
-}
-
-input {
-    outline: none;
 }
 
 ::-webkit-scrollbar {
@@ -13,7 +9,7 @@ input {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #EDF0F6;
+    background-color: white;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -21,115 +17,32 @@ input {
     border-radius: 20px; /* закругления плашки */
 }
 
-.container {
-    width: 100%;
-    min-height: 100vh;
+.content {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+    grid-template-columns: 2fr 8fr;
+    grid-template-areas:"l a"
+                        "c s";
     padding: 10px;
 }
 
-.content {
-    width: 100%;
-    height: calc(100vh - 20px);
-    display: grid;
-    grid-template-areas:"nav dialogs messages info_page";
-    grid-auto-columns: 1fr 6fr 14fr 6fr;
-    grid-gap: 10px;
-    position: relative;
-}
-
 .content > div {
+    border: 1px solid black;
 }
 
-.nav {
-    grid-area: nav;
+.logo {
+    grid-area: l;
 }
 
-.dialogs {
-    grid-area: dialogs;
+.clients {
+    grid-area: c;
 }
 
-.messages {
-    grid-area: messages;
+.action {
+    grid-area: a;
 }
 
-.info_page {
-    grid-area: info_page;
-    height: calc(100vh - 20px);
+.show {
+    grid-area: s;
 }
-
-.info_page_close {
-    grid-auto-columns: 1fr 6fr 19fr 1fr;
-}
-
-.displayNone {
-    display: none;
-}
-
-.classic {
-    border: none;
-    background-color: #EDF0F6;
-    display: block;
-    cursor: pointer;
-}
-
-.classic {
-    border: none;
-    background-color: white;
-}
-
-.classic svg {
-    color: gray;
-}
-
-.classic span {
-    background-color: white;
-}
-
-.classic span:hover {
-    background-color: #E0F4F1;
-}
-
-.classic span:hover svg {
-    background-color: #E0F4F1;
-    color: #00A389;
-}
-
-.classic span:hover {
-    background-color: #E0F4F1;
-}
-
-.files {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.message_photo {
-    margin-top: 2px;
-    width: 50px;
-}
-
-@media (max-width: 900px) {
-    .content {
-        display: block;
-    }
-
-    .nav {
-        height: 7%;
-    }
-
-    .dialogs, .messages, .info_page {
-        height: 93%;
-    }
-}
-
-@media (max-height: 500px) {
-    .nav {
-        display: none;
-    }
-
-    .dialogs, .messages, .info_page {
-        height: 100%;
-    }
-}
-

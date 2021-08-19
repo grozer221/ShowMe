@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Redirect, Route, Switch, useHistory} from 'react-router-dom';
 import {Login} from './components/Login/Login';
@@ -10,9 +10,10 @@ import {s_getIsAuth} from "./redux/auth-selectors";
 import {Button, Result} from "antd";
 import {Register} from "./components/Register/Register";
 import {useMediaQuery} from 'react-responsive'
-import {logout} from "./redux/auth-reducer";
-import {sendMessage, startDialogsListening, stopDialogsListening} from "./redux/localhost-reducer";
-import {s_getMessageTexts} from "./redux/localhost-selectors";
+import {startDialogsListening, stopDialogsListening} from "./redux/localhost-reducer";
+import {Actions} from "./components/Actions/Actions";
+import {Clients} from "./components/Clients/Clients";
+import {Show} from "./components/Show/Show";
 
 export const App: React.FC = () => {
     const isAuth = useSelector(s_getIsAuth);
@@ -49,23 +50,42 @@ const MainPage: React.FC = () => {
     const dispatch = useDispatch();
     const isPhone = useMediaQuery({query: '(max-width: 900px)'})
     const isAuth = useSelector(s_getIsAuth);
-    const messageTexts = useSelector(s_getMessageTexts);
-    const [messageText, setMessageText] = useState('');
+
     if (!isAuth)
         return <Redirect to='/login'/>
 
     return (
         <div className='content'>
-            content
-            <Button type="primary" onClick={() => dispatch(logout())}>logout</Button>
-            <div>
-                <input type="text" value={messageText} onChange={(e) => setMessageText(e.target.value)}/>
-                <button onClick={() => {
-                    dispatch(sendMessage(messageText));
-                    setMessageText('');
-                }}>send</button>
-                {messageTexts.map((message, i) => <div key={i}>{message}</div>)}
+            <div className='logo'>
+                LOGO
             </div>
+            <div className='action'>
+                <Actions/>
+            </div>
+            <div className='clients'>
+                <Clients/>
+            </div>
+            <div className='show'>
+                <Show/>
+            </div>
+            {/*<div className='nav'>*/}
+
+
+            {/*<div>*/}
+            {/*    <Button type="primary" onClick={() => dispatch(logout())}>logout</Button>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <input type="text" value={messageText} onChange={(e) => setMessageText(e.target.value)}/>*/}
+            {/*    <button onClick={() => {*/}
+            {/*        dispatch(sendMessage(messageText));*/}
+            {/*        setMessageText('');*/}
+            {/*    }}>send*/}
+            {/*    </button>*/}
+            {/*    <div className='messages'>*/}
+            {/*        {messageTexts.map((message, i) =>*/}
+            {/*            <div key={i}>{message}</div>)}*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
     )
 };

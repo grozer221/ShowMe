@@ -7,7 +7,7 @@ let initialState = {
     formSuccess: null as null | boolean,
 };
 
-const appReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+export const appReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'INITIALISED_SUCCESS':
             return {
@@ -48,8 +48,6 @@ export const initialiseApp = () => (dispatch: any) => {
             dispatch(actions.initialisedSuccess());
         });
 };
-
-export default appReducer;
 
 export type InitialStateType = typeof initialState;
 type ActionsTypes = InferActionsTypes<typeof actions>

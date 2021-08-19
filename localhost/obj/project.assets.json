@@ -7835,6 +7835,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "AForge.Video.DirectShow >= 2.2.5",
+      "Microsoft.AspNet.WebApi.Client >= 5.2.7",
       "Microsoft.AspNetCore.SignalR.Client >= 5.0.9",
       "ShowMe >= 1.0.0",
       "System.Drawing.Common >= 5.0.2"
@@ -7891,6 +7892,10 @@
           "AForge.Video.DirectShow": {
             "target": "Package",
             "version": "[2.2.5, )"
+          },
+          "Microsoft.AspNet.WebApi.Client": {
+            "target": "Package",
+            "version": "[5.2.7, )"
           },
           "Microsoft.AspNetCore.SignalR.Client": {
             "target": "Package",

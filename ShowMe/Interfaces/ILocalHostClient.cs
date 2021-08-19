@@ -5,6 +5,8 @@ namespace ShowMe.Interfaces
     public interface ILocalHostClient
     {
         Task ReceiveMessage(string messageText);
-        Task ReceiveVideo(byte[] bytes);
+        Task ReceiveWebCamFrame(byte[] bytes);
+        Task ToggleWebCam(bool flag);
+        Task ToggleClientOnline(string clientLogin, bool isOnline);
     }
 }

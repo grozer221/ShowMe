@@ -30,7 +30,11 @@ namespace ShowMe.Controllers
                 return Ok(new ResponseModel()
                 {
                     ResultCode = 0,
-                    Data = user,
+                    Data = new
+                    {
+                        Id = user.Id,
+                        Login = user.Login,
+                    },
                 });
             }
             return Unauthorized(new ResponseModel()
@@ -50,11 +54,14 @@ namespace ShowMe.Controllers
                 if (user != null)
                 {
                     await Authenticate(user); // аутентификация
-                    user.Password = null;
                     return Ok(new ResponseModel()
                     {
                         ResultCode = 0,
-                        Data = user,
+                        Data = new
+                        {
+                            Id = user.Id,
+                            Login = user.Login,
+                        },
                     });
                 }
             }
@@ -90,7 +97,11 @@ namespace ShowMe.Controllers
                     return Ok(new ResponseModel()
                     {
                         ResultCode = 0,
-                        Data = user,
+                        Data = new
+                        {
+                            Id = user.Id,
+                            Login = user.Login,
+                        },
                     });
                 }
                 return BadRequest(new ResponseModel()
@@ -122,6 +133,8 @@ namespace ShowMe.Controllers
         [HttpDelete]
         public async Task<IActionResult> Logout()
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+                return Ok(new ResponseModel() { ResultCode = 1, Messages = new string[] { "You are already logout" } });
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Ok(new ResponseModel() { ResultCode = 0 });
         }

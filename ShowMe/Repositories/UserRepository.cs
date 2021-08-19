@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using ShowMe.Models;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,18 @@ namespace ShowMe.Repositories
             _ctx.Users.Add(user);
             _ctx.SaveChanges();
             return user;
+        }
+        
+        public bool AddClientToUser(string userLogin, string clientLogin)
+        {
+            var user = _ctx.Users.Include(u => u.Clients).FirstOrDefault(u => u.Login == userLogin);
+            var client = _ctx.Clients.Include(u => u.Users).FirstOrDefault(u => u.Login == clientLogin);
+            if (user.Clients.Any(c => c.Login == clientLogin)) 
+                return false;
+            user.Clients.Add(client);
+            client.Users.Add(user);
+            _ctx.SaveChanges();
+            return true;
         }
     }
 }
